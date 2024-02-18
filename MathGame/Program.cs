@@ -1,4 +1,8 @@
 ﻿string? menuSelection;
+Random random = new Random();
+int A = random.Next(100);
+int B = random.Next(100);
+
 Console.WriteLine("What game would you like to play today? Choose from the options below:");
 Console.WriteLine("V - View Previous Games");
 Console.WriteLine("A - Addition");
