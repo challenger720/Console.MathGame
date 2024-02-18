@@ -1,7 +1,9 @@
 ﻿string? menuSelection;
+string? answer;
 Random random = new Random();
-int A = random.Next(100);
-int B = random.Next(100);
+int number;
+int point = 0;
+bool verify;
 
 Console.WriteLine("What game would you like to play today? Choose from the options below:");
 Console.WriteLine("V - View Previous Games");
@@ -24,13 +26,114 @@ switch (menuSelection)
     case "V":
         break;
     case "A":
+        for (int i = 0; i < 5; i++)
+        {
+            Addition();
+        }
+        Score();
         break;
     case "S":
+        for (int i = 0; i < 5; i++)
+        {
+            Subtraction();
+        }
+        Score();
         break;
     case "M":
+        for (int i = 0; i < 5; i++)
+        {
+            Multiply();
+        }
+        Score();
         break;
     case "D":
+        for (int i = 0; i < 5; i++)
+        {
+            Division();
+        }
+        Score();
         break;
     case "Q":
         break;
+}
+
+void Addition()
+{
+    int A = random.Next(1, 101);
+    int B = random.Next(1, 101);
+    int sum = A + B;
+    Console.WriteLine("Addition game");
+    Console.WriteLine($"{A} + {B}");
+    do
+    {
+        answer = Console.ReadLine();
+        verify = int.TryParse(answer, out number);
+    } while (answer == null) && (!verify);
+    Check(number, sum);
+}
+
+void Subtraction()
+{
+    int A = random.Next(1, 101);
+    int B = random.Next(1, 101);
+    int sub = A - B;
+    Console.WriteLine("Subtraction game");
+    Console.WriteLine($"{A} - {B}");
+    do
+    {
+        answer = Console.ReadLine();
+        verify = int.TryParse(answer, out number);
+    } while (answer == null) && (!verify);
+    Check(number, sub);
+}
+
+void Multiply()
+{
+    int A = random.Next(1, 101);
+    int B = random.Next(1, 101);
+    int product = A * B;
+    Console.WriteLine("Multiplication game");
+    Console.WriteLine($"{A} * {B}");
+    do
+    {
+        answer = Console.ReadLine();
+        verify = int.TryParse(answer, out number);
+    } while (answer == null) && (!verify);
+    Check(number, product);
+}
+
+void Division()
+{
+    int remainder = 1;
+    while (remainder != 0)
+    {
+        int A = random.Next(1, 101);
+        int B = random.Next(1, 101);
+        remainder = A % B;
+    }
+    int divide = A / B;
+    Console.WriteLine("Division game");
+    Console.WriteLine($"{A} / {B}");
+    do
+    {
+        answer = Console.ReadLine();
+        verify = int.TryParse(answer, out number);
+    } while (answer == null) && (!verify);
+    Check(number, divide);
+}
+
+void Check(int input, int ans)
+{
+    if (input == ans)
+    {
+        Console.WriteLine("Your answer was correct! Type any key for the next question");
+        point += 1;
+    }
+    else 
+        Console.WriteLine("Incorrect. Type any key for next question");
+}
+
+void Score()
+{
+    Console.WriteLine($"Game over. Your final score is {point}. Press any key to go back to main menu.");
 }
